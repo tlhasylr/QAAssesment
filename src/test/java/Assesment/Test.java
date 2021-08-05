@@ -27,17 +27,42 @@ public class Test {
         driver.findElement(By.xpath("//a[contains(text(),'RDS')]")).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
+        //task1
+
         String ExpectedResult="EC2Instances.info Easy Amazon RDS Instance Comparison";
-        WebElement actualResult= (WebElement) driver.findElements(By.xpath("//body/div[1]/h1[1]"));
 
 
-        List<WebElement> listOfElements = driver.findElements(By.xpath("//body/div[1]/h1[1]"));
+        String actualResult= driver.findElement(By.xpath("/html/body/div[1]/h1")).getText();
 
-        System.out.println(listOfElements);
+        System.out.println(actualResult);
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        Assert.assertEquals(ExpectedResult, actualResult);
+
+        Boolean b= actualResult.contains("RDS");
+        System.out.println("Header contains RDS :" +b);
 
 
-        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-     // Assert.assertEquals("EC2Instances.info Easy Amazon RDS Instance Comparison", actualResult);
+        // task2
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        String Before = driver.findElement(By.xpath("//*[@id=\'db.m3.medium\']/td[1]"))
+                .getCssValue("background-color");
+
+        driver.findElement(By.xpath("//*[@id=\'db.m3.medium\']/td[1]")).click();
+
+        String After = driver.findElement(By.xpath("//*[@id=\'db.m3.medium\']/td[1]"))
+                .getCssValue("background-color");
+
+      if (Before!=After){
+          System.out.println("Background color has been changed after click");
+      }else{
+          System.out.println("Background color does not change");
+      }
+
+
 
 
 

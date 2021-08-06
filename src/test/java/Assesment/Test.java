@@ -59,15 +59,39 @@ public class Test {
       if (Before!=After){
           System.out.println("Background color has been changed after click");
       }else{
-          System.out.println("Background color does not change");
+          System.out.println("Background color has not been changed");
       }
 
+      //task03
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      String BeforeClick= driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/button[1]")).getText();
+      System.out.println(BeforeClick);
+
+
+       WebElement e =driver.findElement(By.xpath("//button[contains(text(),'Compare Selected')]"));
+
+       Boolean ActualValue=e.isEnabled();
+       if(ActualValue){
+
+           System.out.println("Button is enabled");
+       }else
+           System.out.println("Button is disabled");
+
+
+       driver.findElement(By.xpath("//button[contains(text(),'Compare Selected')]")).click();
+
+       WebElement button=driver.findElement(By.xpath("//button[contains(text(),'End Compare')]"));
+        String text =button.getText();
+
+        if(text.contains("End Compare")){
+            System.out.println("Button name is changed to End Compare");
+
+        }else
+            System.out.println("Button name is not changed it");
 
 
 
-
-
-driver.close();
 driver.quit();
 
 

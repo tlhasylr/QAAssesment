@@ -90,8 +90,11 @@ public class Test {
         }else
             System.out.println("Button name is not changed it");
 
+        int vr = driver.findElements(By.xpath("//*[@id=\"data\"]/tbody")).size();
+        System.out.println("Row size is "+vr);
 
 
+driver.close();
 driver.quit();
 
 
